@@ -1,0 +1,192 @@
+print()
+print("Bem-vindo ao jogo do NIM! Escolha:")
+print()
+p = 0
+def main(cond):
+    rep = 0
+    while rep == 0:
+        if cond == 1:
+            print("1 - para jogar uma partida isolada")
+            e = int(input("2 - para jogar um campeonato "))
+            print()
+        if e == 1:
+            print("Você escolheu uma partida isolada!")
+            p = 1
+            return p
+            rep = 1
+        if e == 2:
+            print("Você escolheu um campeonato!")
+            p = 3
+            return p
+            rep = 1
+        else:
+            print("Resposta inválida!")
+            print()
+            print("****************************************************")
+            print()
+            rep = 0
+    print()
+def partida(rod):
+    n = 0
+    m = 1
+    while n < m:
+        print()
+        print("**** Rodada",rod, "****")
+        print()
+        n = int(input("Quantas peças? "))
+        m = int(input("Limite de peças por jogada? "))
+        if n < m:
+            print()
+            print("Resposta inválida!")
+        full = m + 1
+        nm = n % full
+    def computador_escolhe_jogada(n, m):
+        o = 0
+        while o == 0 and m > 0:
+            tropa = 1
+            f = 0
+            cod = m
+            cha = full % cod
+            if cha == 0 and cod <= n and cod <= m:
+                tropa = cod
+                o = 1
+            else:
+                m -= 1
+                o = 0
+            
+        return tropa
+    def usuario_escolhe_jogada (full, kl):
+        j = 0
+        while j == 0:
+            j = 2
+            k = 0
+            t = 0
+            if k == 0 and kl == 9:
+                print()
+                t = int(input("Quantas peças você vai tirar? "))
+            h = full % t
+            if t <= m and h == 0 and t <= n or n == 3 and m == 2:
+                j = 1
+                k = t
+                if t == 1 and h == 0:
+                    k = t
+                    j = 1
+                if t > 1 and h == 0:
+                    k = t
+                    j = 1
+            else:
+                print()
+                print("Oops! Jogada inválida! Tente de novo.")
+                print()
+                j = 0
+        print()
+        return k
+    def seleção(nm, kl):
+        leve = 0
+        usuario_jogou = 1
+        computador_jogou = 0
+        soma = n
+        if nm == 0 and kl == 8:
+            usuario_jogou = False
+            print()
+            print("Você começa!")
+            kl = 9
+            uyu = n
+            soma = n - usuario_escolhe_jogada(full, kl)
+            uyu -= soma 
+            if uyu == 1:
+                print("Você tirou uma peça.")
+            else:
+                print("Você tirou",uyu,"peças.")
+            if soma == 1:
+                print("Agora resta apenas uma peça no tabuleiro.")
+            else:
+                print("Agora restam",soma,"peças no tabuleiro.")
+            print()
+            leve = usuario_jogou
+        if nm != 0 and kl == 8:
+            print()
+            print("Computador começa!")
+            print()
+            computador_jogou = True
+            leve = computador_jogou
+        return leve, soma
+    soma = 0
+    leve = 0
+    quantidade = n
+    kl = 8
+    soma = seleção(nm, kl)[1]
+    kl = 0
+    value = seleção(nm, kl)[0]
+    uyu = 0
+    while quantidade > 0:
+        if value == False and soma > 0:
+            n = soma
+            if kl == 7:
+                print()
+            soma = n - computador_escolhe_jogada(n, m)
+            value = True
+            if computador_escolhe_jogada(n, m) == 1:
+                print("O computador tirou uma peça.")
+            else:
+                print("O computador tirou",computador_escolhe_jogada(n,m),"peças.")
+            if soma > 0:
+                if soma == 1:
+                    print("Agora resta apenas uma peça no tabuleiro.")
+                else:
+                    print("Agora restam",soma,"peças no tabuleiro.")
+            nm = 0
+        if value == True and soma > 0:
+            uyu = n
+            n = soma
+            uyu = n
+            kl = 9
+            soma = n - usuario_escolhe_jogada(full, kl)
+            value = False
+            uyu -= soma 
+            if uyu == 1:
+                print("Você tirou uma peça.")
+            else:
+                print("Voçê tirou",uyu,"peças.")
+            if soma > 0:
+                if soma == 1:
+                    print("Agora resta apenas uma peça no tabuleiro.")
+                else:
+                    print("Agora restam",soma,"peças no tabuleiro.")
+            kl = 56
+            nm = 0
+        if soma == 0:
+            quantidade = 0
+            if value == False:
+                print ("Fim do jogo! Você ganhou!")
+                re = False
+            if value == True:
+                print("Fim do jogo! O computador ganhou!")
+                re = True
+        kl = 7
+        nm = 69
+        n = soma
+    return re
+def competição():
+    cond = 1
+    rod = 1
+    p = main(cond)
+    if p == 1:
+        rod = 1
+        partida(rod)
+    if p == 3:
+        count = 0
+        while count < 3:
+            count += 1
+            g = 0
+            comp = 0
+            partida(rod)
+            rod += 1
+            voc = 0
+            comp = 3
+        print()
+        print("**** Final do campeonato! ****")
+        print()
+        print("Placar: Você",voc,"X",comp,"Computador")
+cond = 1
+competição()
